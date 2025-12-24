@@ -93,8 +93,9 @@ func AuthorStyle(authorName string) *style.TextStyle {
 func trueColorStyle(str string) style.TextStyle {
 	hash := md5.Sum([]byte(str))
 	c := colorful.Hsl(randFloat(hash[0:4])*360.0, 0.6+0.4*randFloat(hash[4:8]), 0.4+randFloat(hash[8:12])*0.2)
-
-	return style.New().SetFg(style.NewRGBColor(color.RGB(uint8(c.R*255), uint8(c.G*255), uint8(c.B*255))))
+	whut := color.RGB(uint8(c.R*255), uint8(c.G*255), uint8(c.B*255));
+	return style.New().SetFg(style.NewBasicColor(whut.Basic()))
+	// return style.New().SetFg(style.NewRGBColor(whut))
 }
 
 func randFloat(hash []byte) float64 {
